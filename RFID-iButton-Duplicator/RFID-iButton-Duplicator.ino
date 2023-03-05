@@ -11,7 +11,7 @@
 */
 
 
-// Настройки
+// Подключаем библиотеки
 #include <OneWire.h>
 #include <OneWireSlave.h>
 #include "pitches.h"
@@ -25,7 +25,7 @@ extern uint8_t BigNumbers[];
 #include <SPI.h>
 #include <MFRC522.h>
 
-//settings
+// Настройки
 // #define DEBUG_ENABLED     // Раскоментируйте для вкл отладки
 // #define BLUE_MODE         // Раскоментируйте если вам нужен BlueMode
 #define rfidUsePWD 0        // ключ использует пароль для изменения
