@@ -11,9 +11,10 @@
 5. Также в место режима blueMode я сделал режим очистки и восстановления Mifare брелка, когда метка неопределяется и нечитается пробуем этот режим. Если кому то нужен режим blueMode, то просто раскоментируйте #define BLUE_MODE в начале кода;
 # Необходимые компоненты
   !Ардуину нужно брать на Atmega328P на 168-ю не влезит!  
-  Arduino Nano https://alii.pub/6ms6vk   https://alii.pub/6ms6yv   https://alii.pub/6ms70f   Arduino ProMini https://alii.pub/6ms72y  
+  Arduino Nano https://alii.pub/6ms6vk   https://alii.pub/6ms6yv   https://alii.pub/6ms70f  
+  Arduino ProMini https://alii.pub/6ms72y  
   RC522 модуль https://alii.pub/6ms75a   https://alii.pub/6ms7ac   https://alii.pub/6ms7bb  
   Повышающий модуль с ЗУ Li-ion https://alii.pub/6ms7f7   https://alii.pub/6ms7hc   https://alii.pub/6ms7ii  
   Плата зарядки Li-ion https://alii.pub/6ms7me   https://alii.pub/6ms7ox   https://alii.pub/6ms7r9   https://alii.pub/6ms7u6  
   Энкодер   https://alii.pub/6ms80l   https://alii.pub/6ms852   https://alii.pub/6ms89q лучше брать именно такие (прямоугольные НЕ БРАТЬ - они плохо работают)  
-  Брелки загатовки   13.5мГц https://alii.pub/6msc7a   https://alii.pub/6mscbd  125кГц  https://alii.pub/6msche
+  Брелки заготовки   13.5мГц https://alii.pub/6msc7a   https://alii.pub/6mscbd  125кГц  https://alii.pub/6msche
