@@ -24,6 +24,18 @@ extern uint8_t BigNumbers[];
 #include "TimerOne.h"
 #include <SPI.h>
 #include <MFRC522.h>
+/* 
+ * Typical pin layout used:
+ * -----------------------------------------------------------------------------------------
+ *             MFRC522      Arduino       Arduino   Arduino    Arduino          Arduino
+ *             Reader/PCD   Uno/101       Mega      Nano v3    Leonardo/Micro   Pro Micro
+ * Signal      Pin          Pin           Pin       Pin        Pin              Pin
+ * -----------------------------------------------------------------------------------------
+ * SPI SS      SDA(SS)      10            53        D10        10               10
+ * SPI MOSI    MOSI         11 / ICSP-4   51        D11        ICSP-4           16
+ * SPI MISO    MISO         12 / ICSP-1   50        D12        ICSP-1           14
+ * SPI SCK     SCK          13 / ICSP-3   52        D13        ICSP-3           15
+ */
 
 // Настройки
 // #define DEBUG_ENABLED     // Раскоментируйте для вкл отладки
@@ -32,7 +44,7 @@ extern uint8_t BigNumbers[];
 #define rfidPWD 123456      // пароль для ключа
 #define rfidBitRate 2       // Скорость обмена с rfid в kbps
 
-//pins
+// Контакты
 #define iButtonPin A3      // Линия data ibutton
 #define iBtnEmulPin A1     // Линия эмулятора ibutton
 #define R_Led 2            // RGB Led
