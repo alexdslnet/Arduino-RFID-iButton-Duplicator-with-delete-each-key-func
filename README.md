@@ -19,4 +19,4 @@
   Энкодер   https://alii.pub/6ms80l   https://alii.pub/6ms852   https://alii.pub/6ms89q лучше брать именно такие (прямоугольные НЕ БРАТЬ - они плохо работают)  
   Брелки заготовки   13.5мГц https://alii.pub/6msc7a   https://alii.pub/6mscbd  125кГц  https://alii.pub/6msche  
   
-  ![Схема подключения](scheme.png)
+  ![Схема подключения](Scheme.png)
