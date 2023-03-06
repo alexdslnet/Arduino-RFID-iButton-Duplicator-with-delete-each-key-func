@@ -21,5 +21,5 @@
   
   ![Схема подключения](Scheme.png)  
   
-  Вид устройства в моем исполнении, корпус напечатан на 3D принтере, файл модели лежит в папке "CASE"  
-  ![alt text](CASE/Photo1.jpg)  ![alt text](CASE/Photo3.jpg)  ![alt text](CASE/Photo4.jpg)
+  Вид устройства в моем исполнении, корпус напечатан на 3D принтере, файл модели лежит в папке "BOX"  
+  ![alt text](/BOX/Photo1.jpg)  ![alt text](/BOX/Photo3.jpg)  ![alt text](/BOX/Photo4.jpg)
