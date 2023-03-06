@@ -16,7 +16,10 @@
   RC522 модуль https://alii.pub/6ms75a   https://alii.pub/6ms7ac   https://alii.pub/6ms7bb  
   Повышающий модуль с ЗУ Li-ion https://alii.pub/6ms7f7   https://alii.pub/6ms7hc   https://alii.pub/6ms7ii  
   Плата зарядки Li-ion https://alii.pub/6ms7me   https://alii.pub/6ms7ox   https://alii.pub/6ms7r9   https://alii.pub/6ms7u6  
-  Энкодер   https://alii.pub/6ms80l   https://alii.pub/6ms852   https://alii.pub/6ms89q лучше брать именно такие (прямоугольные НЕ БРАТЬ - они плохо работают)  
+  Энкодер   https://alii.pub/6ms80l   https://alii.pub/6ms852   https://alii.pub/6ms89q лучше брать именно такие (прямоугольные как на схеме НЕ БРАТЬ - они плохо работают)  
   Брелки заготовки   13.5мГц https://alii.pub/6msc7a   https://alii.pub/6mscbd  125кГц  https://alii.pub/6msche  
   
-  ![Схема подключения](Scheme.png)
+  ![Схема подключения](Scheme.png)  
+  
+  Вид устройства в моем исполнении, корпус напечатан на 3D принтере, файл модели лежит в папке "CASE"  
+  ![alt text](CASE/Photo1.jpg)  ![alt text](CASE/Photo3.jpg)  ![alt text](CASE/Photo4.jpg)
