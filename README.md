@@ -1,8 +1,8 @@
 # Arduino-RFID-iButton-Duplicator
-  Доработка проекта "Копировальщик ключей для домофона RFID с OLED дисплеем и хранением 8 ключей в памяти EEPROM"
-  Автор: [МЕХАТРОН DIY, AlexMalov, 2019](https://github.com/AlexMalov/EasyKeyDublicatorRFID_OLED/)
+  Доработка проекта "Копировальщик ключей для домофона RFID с OLED дисплеем и хранением 8 ключей в памяти EEPROM"  
+  Автор: [МЕХАТРОН DIY, AlexMalov, 2019](https://github.com/AlexMalov/EasyKeyDublicatorRFID_OLED/)  
   Аппаратная часть построена на Arduino Nano или Arduino Pro Mini
-  Две библиотеки лежат в папке с проектом остальные без проблем устанавливаюся через менеджер библиотек, для работы с RC522 я использовал -> эту https://github.com/miguelbalboa/rfid
+  Две библиотеки лежат в папке с проектом остальные без проблем устанавливаюся через менеджер библиотек, для работы с модулем RC522 я использовал [ЭТУ БИБЛИОТЕКУ](https://github.com/miguelbalboa/rfid)
 # Мои доработки
 1. Переназначил вывод генерации 125 кГц с 11 вывода на 3 вывод чтобы освободить шину SPI;
 2. Добавлена подержка работы с модулем RC522, модуль подключается по SPI шине к 11-12-13 пинам Arduino и позволяет копировать ключи Mifare Classic 1K 13.56Mhz;
@@ -23,5 +23,4 @@
   
   Вид устройства в моем исполнении, корпус напечатан на 3D принтере, файл модели лежит в папке "BOX"  
   ![alt text](/BOX/Photo1.jpg)  ![alt text](/BOX/Photo3.jpg)  ![alt text](/BOX/Photo4.jpg)  
-  <iframe width="560" height="315" src="https://youtu.be/-YYWZE235e8" frameborder="0" allowfullscreen></iframe>
-
+  
