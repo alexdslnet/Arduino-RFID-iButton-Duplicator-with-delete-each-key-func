@@ -1,6 +1,6 @@
 # Arduino-RFID-iButton-Duplicator
   Доработка проекта "Копировальщик ключей для домофона RFID с OLED дисплеем и хранением 8 ключей в памяти EEPROM"
-  Автор: МЕХАТРОН DIY, AlexMalov, 2019 https://github.com/AlexMalov/EasyKeyDublicatorRFID_OLED/
+  Автор: [МЕХАТРОН DIY, AlexMalov, 2019](https://github.com/AlexMalov/EasyKeyDublicatorRFID_OLED/)
   Аппаратная часть построена на Arduino Nano или Arduino Pro Mini
   Две библиотеки лежат в папке с проектом остальные без проблем устанавливаюся через менеджер библиотек, для работы с RC522 я использовал -> эту https://github.com/miguelbalboa/rfid
 # Мои доработки
@@ -22,4 +22,6 @@
   ![Схема подключения](Scheme.png)  
   
   Вид устройства в моем исполнении, корпус напечатан на 3D принтере, файл модели лежит в папке "BOX"  
-  ![alt text](/BOX/Photo1.jpg)  ![alt text](/BOX/Photo3.jpg)  ![alt text](/BOX/Photo4.jpg)
+  ![alt text](/BOX/Photo1.jpg)  ![alt text](/BOX/Photo3.jpg)  ![alt text](/BOX/Photo4.jpg)  
+  <iframe width="560" height="315" src="https://youtu.be/-YYWZE235e8" frameborder="0" allowfullscreen></iframe>
+
