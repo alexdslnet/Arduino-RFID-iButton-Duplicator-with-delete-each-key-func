@@ -852,6 +852,7 @@ bool write2rfid(){
 
 //**********Mifare***************************
 bool searchMifare() {
+  bool result = false;
   for (byte i = 0; i < 6; i++) {
     key.keyByte[i] = 0xFF;
   }
@@ -868,12 +869,13 @@ bool searchMifare() {
       Serial.print(addr[i], HEX); Serial.print(":");
     }
     Serial.println(F(") Type: Mifare "));
-    return true;
+    result = true;
   }
-  return false;
+  return result;
 }
 
 bool write2Mifare() {
+  bool result = false;
   bool Check = false;
   for (byte i = 0; i < 6; i++) {
     key.keyByte[i] = 0xFF;
@@ -890,13 +892,12 @@ bool write2Mifare() {
         Serial.println(F(" The key has copied successfully "));
         OLED_printError(F("The key has copied"), false);
         Sd_ReadOK();
-        return true;
+        result = true;
       }
       else {
         Serial.println(F(" The key copy faild "));
         OLED_printError(F("The key copy faild"));
         Sd_ErrorBeep();
-        return false;
       }
     }
     else {
@@ -906,15 +907,16 @@ bool write2Mifare() {
       Sd_ErrorBeep();
       digitalWrite(R_Led, HIGH);
       delay(1000);
-      return false;
     }
   }
   rfid.PICC_HaltA();                // Останавливаем считывание метки
-  return false;
+  rfid.PCD_StopCrypto1();
+  return result;
 }
 
 #ifndef BLUE_MODE
 bool clear2Mifare() {
+  bool result = false;
   if (rfid.PICC_IsNewCardPresent() && rfid.PICC_ReadCardSerial()) {
     Serial.println("Card detected");
     // Очищаем карту
@@ -925,12 +927,11 @@ bool clear2Mifare() {
         Serial.println("Block " + String(i) + " cleared");
         OLED_printError(F("Cleared successfully"), false);
         Sd_ReadOK();
-        return true;
+        result = true;
       } else {
         Serial.println("Failed to clear block " + String(i));
         OLED_printError(F("Failed cleared"));
         Sd_ErrorBeep();
-        return false;
       }
     }
     // Останавливаем считывание метки
@@ -939,10 +940,11 @@ bool clear2Mifare() {
   }
   else if ( rfid.MIFARE_UnbrickUidSector(false) ) {
     Serial.println(F("Cleared sector 0, set UID to 1234. Card should be responsive again now."));
-    OLED_printError(F("Cleared sector 0"), false);
+    OLED_printError(F("Unbrick Sector 0"), false);
     Sd_ReadOK();
-    return true;
+    result = true;
   }
+  return result;
 }
 #endif
 
