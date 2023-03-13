@@ -71,6 +71,7 @@ byte addr[8];                             // временный буфер
 byte keyID[8];                            // ID ключа для записи
 byte rfidData[5];                         // значащие данные frid em-marine
 byte halfT;                               // полупериод для метаком
+bool statOk = false;                      // статус успешной операции, чтобы запись или очистка не проиходила по кругу
 enum emRWType {rwUnknown, TM01, RW1990_1, RW1990_2, TM2004, T5557, EM4305};               // тип болванки
 enum emkeyType {keyUnknown, keyDallas, keyTM2004, keyCyfral, keyMetacom, keyEM_Marine, keyMifare};    // тип оригинального ключа  
 emkeyType keyType;
@@ -893,11 +894,15 @@ bool write2Mifare() {
         OLED_printError(F("The key has copied"), false);
         Sd_ReadOK();
         result = true;
+        statOk = result;
       }
       else {
+        digitalWrite(R_Led, LOW); 
         Serial.println(F(" The key copy faild "));
         OLED_printError(F("The key copy faild"));
         Sd_ErrorBeep();
+        digitalWrite(R_Led, HIGH);
+        delay(1000);
       }
     }
     else {
@@ -925,18 +930,22 @@ bool clear2Mifare() {
       memset(buffer, 0, sizeof(buffer));
       if (rfid.MIFARE_Write(i, buffer, 16)) {
         Serial.println("Block " + String(i) + " cleared");
-        OLED_printError(F("Cleared successfully"), false);
-        Sd_ReadOK();
-        result = true;
-      } else {
+        OLED_printError(F("Clear ..."), false);
+        Sd_WriteStep();
+      } 
+      else {
         Serial.println("Failed to clear block " + String(i));
         OLED_printError(F("Failed cleared"));
         Sd_ErrorBeep();
+        result = false;
       }
     }
     // Останавливаем считывание метки
     rfid.PICC_HaltA();
     rfid.PCD_StopCrypto1();
+    Sd_ReadOK();
+    OLED_printError(F("Cleared successfully"), false);
+    result = true;
   }
   else if ( rfid.MIFARE_UnbrickUidSector(false) ) {
     Serial.println(F("Cleared sector 0, set UID to 1234. Card should be responsive again now."));
@@ -944,6 +953,7 @@ bool clear2Mifare() {
     Sd_ReadOK();
     result = true;
   }
+  statOk = result;
   return result;
 }
 #endif
@@ -1017,6 +1027,7 @@ void loop() {
     OLED_printKey(keyID);
     Serial.print(F("Mode: ")); Serial.println(copierMode);
     Sd_WriteStep();
+    statOk = false;
   }
   if (enc1.isLeft() && (EEPROM_key_count > 0)){       //при повороте энкодера листаем ключи из eeprom
     EEPROM_key_index--;
@@ -1024,13 +1035,15 @@ void loop() {
     EEPROM_get_key(EEPROM_key_index, keyID);
     OLED_printKey(keyID);
     Sd_WriteStep();
+    statOk = false;
   }
   if (enc1.isRight() && (EEPROM_key_count > 0)){
     EEPROM_key_index++;
     if (EEPROM_key_index > EEPROM_key_count) EEPROM_key_index = 1;
     EEPROM_get_key(EEPROM_key_index, keyID);
     OLED_printKey(keyID);
-    Sd_WriteStep();            
+    Sd_WriteStep();
+    statOk = false;
   }
   if ((copierMode != md_empty) && enc1.isHolded()){     // Если зажать кнопкку - ключ сохранися в EEPROM
     if (EPPROM_AddKey(keyID)) {
@@ -1057,7 +1070,7 @@ void loop() {
         break;
       case md_write:
         if (keyType == keyEM_Marine) write2rfid();
-          else if (keyType == keyMifare) write2Mifare();
+          else if (keyType == keyMifare && !statOk) write2Mifare();
           else write2iBtn(); 
         break;
       case md_threeMode: 
@@ -1066,8 +1079,10 @@ void loop() {
           break;
         #endif
         #ifndef BLUE_MODE
+          if(!statOk){
           clear2Mifare();
           break;
+          }
         #endif
     } //end switch
 }
