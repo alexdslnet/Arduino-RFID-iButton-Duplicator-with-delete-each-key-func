@@ -22,5 +22,5 @@
   ![Схема подключения](Scheme.png)  
   
   Вид устройства в моем исполнении, корпус напечатан на 3D принтере, файл модели лежит в папке "BOX"  
-  [![Видеообзор устройства](https://imgur.com/a/1ZFp28o)](https://youtu.be/deiOaTfzMO0)  
+  [![Видеообзор устройства](/BOX/Photo7.jpg)](https://youtu.be/deiOaTfzMO0)  
   ![alt text](/BOX/Photo1.jpg)  ![alt text](/BOX/Photo3.jpg)  ![alt text](/BOX/Photo4.jpg)  
