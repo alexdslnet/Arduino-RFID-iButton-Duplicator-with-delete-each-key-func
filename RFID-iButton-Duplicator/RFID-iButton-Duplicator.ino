@@ -1019,10 +1019,11 @@ void loop() {
     switch (copierMode){
       case md_empty: Sd_ErrorBeep(); break;
       case md_read: copierMode = md_write; clearLed(); digitalWrite(R_Led, HIGH);  break;
+        delayMicroseconds(5); break;
       case md_write: copierMode = md_threeMode; clearLed(); digitalWrite(B_Led, HIGH); 
-        digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN)); break;
+        delayMicroseconds(5); break;
       case md_threeMode: copierMode = md_read; clearLed(); digitalWrite(G_Led, HIGH); 
-        digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN)); break;
+        delayMicroseconds(5); break;
     }
     OLED_printKey(keyID);
     Serial.print(F("Mode: ")); Serial.println(copierMode);
@@ -1035,7 +1036,7 @@ void loop() {
     EEPROM_get_key(EEPROM_key_index, keyID);
     OLED_printKey(keyID);
     Sd_WriteStep();
-    statOk = false;
+    // statOk = false;
   }
   if (enc1.isRight() && (EEPROM_key_count > 0)){
     EEPROM_key_index++;
@@ -1043,7 +1044,7 @@ void loop() {
     EEPROM_get_key(EEPROM_key_index, keyID);
     OLED_printKey(keyID);
     Sd_WriteStep();
-    statOk = false;
+    // statOk = false;
   }
   if ((copierMode != md_empty) && enc1.isHolded()){     // Если зажать кнопкку - ключ сохранися в EEPROM
     if (EPPROM_AddKey(keyID)) {
@@ -1070,7 +1071,7 @@ void loop() {
         break;
       case md_write:
         if (keyType == keyEM_Marine) write2rfid();
-          else if (keyType == keyMifare && !statOk) write2Mifare();
+          else if (keyType == keyMifare) write2Mifare();
           else write2iBtn(); 
         break;
       case md_threeMode: 
