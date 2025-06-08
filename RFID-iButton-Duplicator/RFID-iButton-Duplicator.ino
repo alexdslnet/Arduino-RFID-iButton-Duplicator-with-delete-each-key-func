@@ -10,8 +10,6 @@
   5. Также в место режима blueMode я сделал режим очистки и восстановления Mifare метки, когда метка неопределяется и нечитается пробуем этот режим. Если кому то нужен режим blueMode, то просто раскоментируйте #define BLUE_MODE в начале кода.
   alexdsl добавил функцию удаления выбранного ключа из EEPROM путем зажатия энкодера и поворота его вправо на один щелчок.
 */
-
-
 // Подключаем библиотеки
 #include <OneWire.h>
 #include <OneWireSlave.h>
@@ -1210,16 +1208,27 @@ void loop() {
     }
   } //end switch
 
- if (enc1.isRightH()) {    
-  if (EEPROM_DeleteKey(keyID)) {
-    OLED_printError(F("Key deleted"), false);
-    Sd_ReadOK();
-    delay(1000);
-  } else {
-    Sd_ErrorBeep();
+ if (enc1.isRightH())
+ {
+  if (EEPROM_key_count > 0)
+  {    
+    if (EEPROM_DeleteKey(keyID))
+      {
+        OLED_printError(F("Key deleted"), false);
+        Sd_ReadOK();
+        delay(1000);
+      }
+    else
+      {
+        Sd_ErrorBeep();
+      }
+    OLED_printKey(keyID);
   }
-  OLED_printKey(keyID);
-}
+else
+  {
+    OLED_printError(F("ROM has no keys yet"), false); 
+  }
+ }
 }
 
 //***************** звуки****************
